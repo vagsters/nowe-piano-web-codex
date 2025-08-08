@@ -1,0 +1,369 @@
+/*
+ * Global styles for the piano learning web app.
+ *
+ * The design uses a light, modern colour palette and simple, flexible
+ * layouts. Cards and buttons have subtle shadows to create depth,
+ * while the hero section uses a semi‑transparent overlay on top of the
+ * background image to make text stand out. Utility classes allow
+ * consistent spacing and typography throughout the app.
+ */
+
+:root {
+  /* Colour palette inspired by modern dark dashboards */
+  --primary: #8b5cf6; /* violet */
+  --primary-dark: #6d28d9; /* deeper violet */
+  --secondary: #34d399; /* emerald/green */
+  --background: #0e2147; /* dark navy background */
+  --surface: #152a59; /* dark surface for cards and panels */
+  --text: #e5e7eb; /* light text on dark backgrounds */
+  --text-light: #f9fafb; /* very light text */
+  --shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  /* Accent colours for cards */
+  --accent1: #8b5cf6; /* purple */
+  --accent2: #fbbf24; /* yellow */
+  --accent3: #34d399; /* green */
+  --accent4: #3b82f6; /* blue */
+  --accent5: #ec4899; /* pink */
+  --accent6: #f97316; /* orange */
+  --accent7: #06b6d4; /* teal */
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  background-color: var(--background);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+a {
+  color: var(--primary);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--secondary);
+}
+
+header {
+  background-color: var(--surface);
+  color: var(--text);
+  padding: 0.75rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+header .logo {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+header nav {
+  display: flex;
+  gap: 1rem;
+}
+
+header nav a {
+  color: var(--text);
+  font-weight: 500;
+}
+
+header nav a:hover {
+  color: var(--primary);
+}
+
+.hero {
+  position: relative;
+  height: 45vh;
+  min-height: 300px;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-light);
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 0;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  max-width: 800px;
+  padding: 0 1rem;
+  color: var(--text-light);
+}
+
+.hero-content h1 {
+  font-size: 2.25rem;
+  margin-bottom: 0.75rem;
+  font-weight: 700;
+}
+
+.hero-content p {
+  font-size: 1.125rem;
+  margin-bottom: 1.5rem;
+}
+
+.btn {
+  display: inline-block;
+  background-color: var(--primary);
+  color: var(--text-light);
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.btn:hover {
+  background-color: var(--primary-dark);
+}
+
+.section {
+  padding: 3rem 1rem;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.card {
+  background-color: var(--surface);
+  border-radius: 0.75rem;
+  box-shadow: var(--shadow);
+  padding: 1.5rem;
+  max-width: 320px;
+  flex: 1 1 260px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  color: var(--text);
+}
+
+.card h3 {
+  margin-bottom: 0.5rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-light);
+}
+
+.card p {
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+  color: var(--text);
+}
+
+.exercise-container {
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: var(--surface);
+  padding: 2rem;
+  border-radius: 0.75rem;
+  box-shadow: var(--shadow);
+  color: var(--text);
+}
+
+.exercise-container h2 {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  text-align: center;
+  color: var(--text-light);
+}
+
+.exercise-container .instructions {
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--text);
+}
+
+.exercise-container .status {
+  margin-top: 1rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.hidden {
+  display: none;
+}
+
+.note-list {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+}
+
+.note-list span {
+  background-color: var(--secondary);
+  color: var(--text-light);
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font-weight: 500;
+}
+
+.result-success {
+  color: var(--accent3);
+}
+
+.result-failure {
+  color: #ef4444;
+}
+
+/* Highlight for correctly played expected notes */
+.correct-note {
+  color: var(--secondary);
+  font-weight: 600;
+}
+
+footer {
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.875rem;
+  background-color: var(--surface);
+  color: var(--text);
+}
+
+/* Styles for the virtual piano */
+/*
+ * The virtual piano uses a two‑layer approach. White keys stretch across
+ * the container and form the base layer, while black keys are
+ * positioned absolutely above the white keys. Both types respond to
+ * hover and active states by changing colour to the secondary palette.
+ */
+
+.piano {
+  position: relative;
+  display: flex;
+  margin: 2rem auto;
+  max-width: 700px;
+  width: 100%;
+  height: 200px;
+  border: 1px solid #ccc;
+  border-radius: 0.25rem;
+  overflow: hidden;
+  background: #fafafa;
+}
+
+/* White keys */
+.white-key {
+  flex: 1;
+  border-right: 1px solid #ddd;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  user-select: none;
+  background: linear-gradient(to bottom, #ffffff 0%, #f2f2f2 100%);
+  transition: background-color 0.1s ease, color 0.1s ease;
+  z-index: 1;
+}
+
+.white-key:last-child {
+  border-right: none;
+}
+
+/* Black keys */
+.black-key {
+  position: absolute;
+  height: 60%;
+  background: #333;
+  border-radius: 0 0 4px 4px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 0.3rem;
+  font-weight: 500;
+  font-size: 0.7rem;
+  color: #fff;
+  cursor: pointer;
+  user-select: none;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.3);
+  transition: background-color 0.1s ease, color 0.1s ease;
+  z-index: 2;
+}
+
+/* Hover and active states */
+.white-key:hover,
+.white-key.active {
+  background-color: var(--secondary);
+  color: var(--text-light);
+}
+.black-key:hover,
+.black-key.active {
+  background-color: var(--secondary);
+  color: var(--text-light);
+}
+
+/*
+ * Accent card colours for the home page. Each class can be applied to
+ * a card to give it a distinct background colour inspired by modern
+ * dashboard designs. Use light or dark text depending on the colour
+ * brightness to maintain contrast.
+ */
+.card-accent1 {
+  background-color: var(--accent1);
+  color: var(--text-light);
+}
+.card-accent2 {
+  background-color: var(--accent2);
+  color: #1f2937;
+}
+.card-accent3 {
+  background-color: var(--accent3);
+  color: #052e16;
+}
+.card-accent4 {
+  background-color: var(--accent4);
+  color: var(--text-light);
+}
+.card-accent5 {
+  background-color: var(--accent5);
+  color: var(--text-light);
+}
+.card-accent6 {
+  background-color: var(--accent6);
+  color: #78350f;
+}
+.card-accent7 {
+  background-color: var(--accent7);
+  color: var(--text-light);
+}

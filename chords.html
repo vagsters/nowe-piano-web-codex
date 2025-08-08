@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lekcje akordów – Piano Tutor</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <div class="logo">Piano Tutor</div>
+    <nav>
+      <a href="index.html">Strona główna</a>
+      <a href="chords.html" class="active">Akordy</a>
+      <a href="intervals.html">Interwały</a>
+      <a href="piano.html">Pianino</a>
+      <a href="memory.html">Sekwencje</a>
+      <a href="rhythm.html">Rytm</a>
+      <a href="reading.html">Czytanie nut</a>
+      <a href="progress.html">Postępy</a>
+    </nav>
+  </header>
+
+  <!-- Settings bar for audio options -->
+  <div class="settings-bar" style="padding:0.5rem 1rem; background-color: var(--surface); display:flex; align-items:center; gap:0.5rem; font-size:0.9rem; border-bottom: 1px solid rgba(255,255,255,0.05); color: var(--text);">
+    <label for="instrument-select">Instrument:</label>
+    <select id="instrument-select">
+      <option value="sine">Piano (sine)</option>
+      <option value="square">Organ (kwadratowa)</option>
+      <option value="triangle">Harfa (trójkątna)</option>
+      <option value="sawtooth">Smyczki (piła)</option>
+    </select>
+    <label style="margin-left:1rem;">
+      <input type="checkbox" id="slow-mode" /> Tryb wolny
+    </label>
+  </div>
+
+  <main class="section">
+    <div class="exercise-container">
+      <h2>Lekcja rozpoznawania akordów</h2>
+      <p class="instructions">
+        W tej lekcji nauczysz się rozpoznawać podstawowe akordy. Za każdym
+        razem otrzymasz nazwę akordu oraz listę jego składników. Możesz
+        posłuchać, jak brzmi akord, a następnie zagrać go na pianinie.
+        Zagraj kolejno każdą nutę akordu, a aplikacja z mikrofonu
+        zweryfikuje, czy dźwięki są poprawne.
+      </p>
+      <div class="controls" style="text-align:center; margin-bottom:1rem;">
+        <button id="next-chord" class="btn">Następny akord</button>
+        <button id="play-chord" class="btn" style="margin-left:0.5rem;">
+          Odtwórz akord
+        </button>
+        <button id="start-record" class="btn" style="margin-left:0.5rem;">
+          Rozpocznij nagrywanie
+        </button>
+      </div>
+      <div id="chord-info" class="hidden">
+        <h3 id="chord-name"></h3>
+        <div id="expected-notes" class="note-list"></div>
+      </div>
+      <div id="user-notes" class="note-list"></div>
+      <p id="status" class="status"></p>
+    </div>
+  </main>
+
+  <footer>
+    &copy; 2025 Piano Tutor
+  </footer>
+
+  <script type="module" src="js/chords.js"></script>
+
+  <!-- Controls script: instrument and slow mode -->
+  <script type="module">
+    import { setWaveform, setSlowMode } from './js/common.js';
+    const instrumentSelect = document.getElementById('instrument-select');
+    const slowCheckbox = document.getElementById('slow-mode');
+    instrumentSelect.addEventListener('change', (e) => {
+      setWaveform(e.target.value);
+    });
+    slowCheckbox.addEventListener('change', (e) => {
+      setSlowMode(e.target.checked);
+    });
+  </script>
+</body>
+</html>

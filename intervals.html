@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lekcje interwałów – Piano Tutor</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <div class="logo">Piano Tutor</div>
+    <nav>
+      <a href="index.html">Strona główna</a>
+      <a href="chords.html">Akordy</a>
+      <a href="intervals.html" class="active">Interwały</a>
+      <a href="piano.html">Pianino</a>
+      <a href="memory.html">Sekwencje</a>
+      <a href="rhythm.html">Rytm</a>
+      <a href="reading.html">Czytanie nut</a>
+      <a href="progress.html">Postępy</a>
+    </nav>
+  </header>
+
+  <!-- Settings bar for audio options -->
+  <div class="settings-bar" style="padding:0.5rem 1rem; background-color: var(--surface); display:flex; align-items:center; gap:0.5rem; font-size:0.9rem; border-bottom: 1px solid rgba(255,255,255,0.05); color: var(--text);">
+    <label for="instrument-select">Instrument:</label>
+    <select id="instrument-select">
+      <option value="sine">Piano (sine)</option>
+      <option value="square">Organ (kwadratowa)</option>
+      <option value="triangle">Harfa (trójkątna)</option>
+      <option value="sawtooth">Smyczki (piła)</option>
+    </select>
+    <label style="margin-left:1rem;">
+      <input type="checkbox" id="slow-mode" /> Tryb wolny
+    </label>
+  </div>
+
+  <main class="section">
+    <div class="exercise-container">
+      <h2>Lekcja rozpoznawania interwałów</h2>
+      <p class="instructions">
+        Ta lekcja pomoże Ci rozpoznawać interwały między dwoma dźwiękami. Za
+        każdym razem zobaczysz nazwę interwału i będziesz mógł posłuchać
+        przykładu. Następnie zagraj pierwszy dźwięk, a po chwili drugi;
+        aplikacja sprawdzi odległość między nimi i poinformuje Cię, czy
+        odgadłeś interwał poprawnie.
+      </p>
+      <div class="controls" style="text-align:center; margin-bottom:1rem;">
+        <button id="next-interval" class="btn">Następny interwał</button>
+        <button id="play-interval" class="btn" style="margin-left:0.5rem;">
+          Odtwórz interwał
+        </button>
+        <button id="start-record" class="btn" style="margin-left:0.5rem;">
+          Rozpocznij nagrywanie
+        </button>
+      </div>
+      <div id="interval-info" class="hidden">
+        <h3 id="interval-name"></h3>
+        <p id="interval-description"></p>
+        <div id="expected-interval-notes" class="note-list"></div>
+      </div>
+      <div id="interval-user-notes" class="note-list"></div>
+      <p id="interval-status" class="status"></p>
+    </div>
+  </main>
+
+  <footer>
+    &copy; 2025 Piano Tutor
+  </footer>
+
+  <script type="module" src="js/intervals.js"></script>
+
+  <!-- Controls script: instrument and slow mode -->
+  <script type="module">
+    import { setWaveform, setSlowMode } from './js/common.js';
+    const instrumentSelect = document.getElementById('instrument-select');
+    const slowCheckbox = document.getElementById('slow-mode');
+    instrumentSelect.addEventListener('change', (e) => {
+      setWaveform(e.target.value);
+    });
+    slowCheckbox.addEventListener('change', (e) => {
+      setSlowMode(e.target.checked);
+    });
+  </script>
+</body>
+</html>

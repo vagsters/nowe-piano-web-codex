@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ćwiczenia sekwencji – Piano Tutor</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <div class="logo">Piano Tutor</div>
+    <nav>
+      <a href="index.html">Strona główna</a>
+      <a href="chords.html">Akordy</a>
+      <a href="intervals.html">Interwały</a>
+      <a href="piano.html">Pianino</a>
+      <a href="memory.html" class="active">Sekwencje</a>
+      <a href="rhythm.html">Rytm</a>
+      <a href="reading.html">Czytanie nut</a>
+      <a href="progress.html">Postępy</a>
+    </nav>
+  </header>
+
+  <!-- Settings bar for audio options -->
+  <div class="settings-bar" style="padding:0.5rem 1rem; background-color: var(--surface); display:flex; align-items:center; gap:0.5rem; font-size:0.9rem; border-bottom: 1px solid rgba(255,255,255,0.05); color: var(--text);">
+    <label for="instrument-select">Instrument:</label>
+    <select id="instrument-select">
+      <option value="sine">Piano (sine)</option>
+      <option value="square">Organ (kwadratowa)</option>
+      <option value="triangle">Harfa (trójkątna)</option>
+      <option value="sawtooth">Smyczki (piła)</option>
+    </select>
+    <label style="margin-left:1rem;">
+      <input type="checkbox" id="slow-mode" /> Tryb wolny
+    </label>
+  </div>
+  <main class="section">
+    <h2>Ćwiczenia sekwencji</h2>
+    <p>Odsłuchaj losowo wygenerowaną sekwencję dźwięków, a następnie odtwórz ją, grając na instrumencie lub śpiewając. Mikrofon sprawdzi, czy powtórzyłeś poprawnie.</p>
+    <div class="controls" style="text-align:center; margin-bottom:1rem;">
+      <button id="generate-sequence" class="btn">Odtwórz sekwencję</button>
+      <button id="start-seq-record" class="btn" style="margin-left:0.5rem;">Rozpocznij nagrywanie</button>
+      <button id="show-hints" class="btn" style="margin-left:0.5rem;">Pokaż wskazówki</button>
+    </div>
+    <div id="sequence-display" class="note-list"></div>
+    <div id="sequence-hints" class="note-list" style="margin-top:0.5rem;"></div>
+    <div id="user-sequence" class="note-list"></div>
+    <p id="sequence-status" class="status"></p>
+  </main>
+  <footer>
+    &copy; 2025 Piano Tutor
+  </footer>
+  <script type="module" src="js/memory.js"></script>
+
+  <!-- Controls script: instrument, slow mode, hints -->
+  <script type="module">
+    import { setWaveform, setSlowMode } from './js/common.js';
+    const instrumentSelect = document.getElementById('instrument-select');
+    const slowCheckbox = document.getElementById('slow-mode');
+    instrumentSelect.addEventListener('change', (e) => {
+      setWaveform(e.target.value);
+    });
+    slowCheckbox.addEventListener('change', (e) => {
+      setSlowMode(e.target.checked);
+    });
+  </script>
+</body>
+</html>
